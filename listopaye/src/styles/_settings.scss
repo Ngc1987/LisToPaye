@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$font-1: 'Nunito', sans-serif;
+$font-2: 'Comfortaa', cursive;
+
+$color-1: #FF3F3D;
+$color-2: #FF9408;
+$color-3: #FFDEDF;
+$color-4: #FFE9D8;
+$color-5: #2F3D4E;
+$color-6: #D9F0FA;
+$color-font: #424B56;
+
+:root {
+	font-size: 10px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  font-family: $font-1;
+  color: $color-5;
+
+  &::selection {
+    background: $color-1;
+  }
+}
+.App {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+body {
+	background: linear-gradient(to left top, $color-3, $color-4);
+	background-size: cover;
+	width: 100%;
+	height: 100vh;
+}
+a,
+a:visited {
+  color: $color-3;
+}
