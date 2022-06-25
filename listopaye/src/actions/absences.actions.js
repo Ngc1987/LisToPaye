@@ -25,3 +25,26 @@ export const getAbsences = () => {
 		});
 	};
 }
+
+export const createAbsence = (data) => {
+	console.log(data)
+	return (dispatch) => {
+		axios.post(`https://lit-citadel-53781.herokuapp.com/https://test-technique-front.vercel.app/api/absences`, data)
+		.then((res) => {
+			dispatch({ type: CREATE_ABSENCE, payload: data})
+		})
+		.catch((err) => console.log(err))
+	}
+}
+export const modifyAbsence = (id, data) => {
+
+	console.log(id, data)
+	return (dispatch) => {
+		axios.put(`https://lit-citadel-53781.herokuapp.com/https://test-technique-front.vercel.app/api/absences/${id}`, data)
+		.then((res) => {
+			dispatch({type: MODIFY_ABSENCE, payload: data})
+			console.log(res)
+		})
+		.catch((err) => console.log(err))
+	}
+}

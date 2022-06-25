@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react'
 import { useState } from "react";
 import { dateParser } from './../utils/dateParser';
+import { getAbsences, modifyAbsence } from "../actions/absences.actions";
+import { useDispatch } from "react-redux";
 
-const Absence = ({employee, dateDebut, dateFin, type, id}) => {
+const Absence = ({ employee, dateDebut, dateFin, type, id }) => {
 
-	
+	const dispatch = useDispatch();
 
 	const [editAbsence, setEditAbsence] = useState(false);
 
@@ -13,24 +15,37 @@ const Absence = ({employee, dateDebut, dateFin, type, id}) => {
 	const [newDateFin, setNewDateFin] = useState(dateFin);
 	const [newType, setNewType] = useState(type);
 
-	
+
 	const convertedNewDateDebut = new Date(newDateDebut).toISOString();
 	const convertedNewDateFin = new Date(newDateFin).toISOString();
 	console.log(editAbsence)
 
 	useEffect(() => {
 		function closeInput(e) {
-			console.log(e.target.className)
+			// Close the edit modale when click outside of it
 			if (e.target.parentElement.className !== "absence__update visible" && e.target.className !== "absence__update visible" && e.target.id !== "editImg") {
 				setEditAbsence(false);
 			}
 
 		}
-
 		window.addEventListener("click", closeInput)
 
 		return () => window.removeEventListener("click", closeInput)
 	})
+
+	const handleModifyAbsence = () => {
+
+		const data = {
+			dateDebut: convertedNewDateDebut,
+			dateFin: convertedNewDateFin,
+			absenceCode: newType,
+			employeeName: newEmployee
+		}
+
+		dispatch(modifyAbsence(id, data));
+		setEditAbsence(false);
+		dispatch(getAbsences());
+	}
 
 	return (
 		<article className="absence" >
@@ -51,41 +66,44 @@ const Absence = ({employee, dateDebut, dateFin, type, id}) => {
 			{editAbsence &&
 				<div className={`absence__update ${editAbsence ? "visible" : "hidden"}`} id="absenceUpdate">
 					<label htmlFor="employee">Employé</label>
-					<input type="text" 
-							id="employee" 
-							name="employee" 
-							onChange={(e) => setNewEmployee(e.target.value)}
-							value={newEmployee} 
-							/>
+					<input type="text"
+						id="employee"
+						name="employee"
+						onChange={(e) => setNewEmployee(e.target.value)}
+						value={newEmployee}
+					/>
 
 					<label htmlFor="type">Type</label>
-					<input type="text" 
-							id="type" 
-							name="type" 
-							onChange={(e) => setNewType(e.target.value)}
-							value={newType}
-							/>
+					<input type="text"
+						id="type"
+						name="type"
+						onChange={(e) => setNewType(e.target.value)}
+						value={newType}
+					/>
 
 					<label htmlFor="dateDebut">Nouvelle date de début</label>
-					<input type="date" 
-							id="dateDebut" 
-							name="dateDebut" 
-							onChange={(e) => setNewDateDebut(e.target.value)}
-							value={newDateDebut}
-							/>
+					<input type="date"
+						id="dateDebut"
+						name="dateDebut"
+						onChange={(e) => setNewDateDebut(e.target.value)}
+						value={newDateDebut}
+					/>
 
 					<label htmlFor="dateFin">Nouvelle date de fin</label>
-					<input type="date" 
-							id="dateFin" 
-							name="dateFin" 
-							onChange={(e) => setNewDateFin(e.target.value)}
-							value={newDateFin}
-							/>
+					<input type="date"
+						id="dateFin"
+						name="dateFin"
+						onChange={(e) => setNewDateFin(e.target.value)}
+						value={newDateFin}
+					/>
+
+					<button onClick={handleModifyAbsence} >Valider modifications</button>
+
 				</div>
 			}
-			
+
 		</article>
 	)
 }
 
-export default Absence
+export default Absence;
