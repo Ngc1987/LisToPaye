@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 
-const EditAbsence = ({ setEditAbsenceModale }) => {
+import PropTypes from 'prop-types';
+
+const EditAbsenceButton = ({ setEditAbsenceModale }) => {
 
 	useEffect(() => {
 		function closeEditModale(e) {
@@ -22,4 +24,12 @@ const EditAbsence = ({ setEditAbsenceModale }) => {
 	)
 }
 
-export default EditAbsence
+EditAbsenceButton.propTypes = {
+	/**
+	 * Function to change if show or no the edit absence modale
+	 */
+	setEditAbsenceModale: PropTypes.func.isRequired
+}
+
+
+export default EditAbsenceButton;

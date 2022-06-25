@@ -7,9 +7,9 @@ $color-1: #FF3F3D;
 $color-2: #FF9408;
 $color-3: #FFDEDF;
 $color-4: #FFE9D8;
-$color-5: #2F3D4E;
+$color-5: #424B56;
 $color-6: #D9F0FA;
-$color-font: #424B56;
+$color-font: #2F3D4E;
 
 :root {
 	font-size: 10px;
@@ -23,10 +23,15 @@ $color-font: #424B56;
   border: none;
   text-decoration: none;
   font-family: $font-1;
-  color: $color-5;
+  color: $color-font;
 
   &::selection {
-    background: $color-1;
+    background:rgba(252, 164, 142, 0.966);
+	color: #fff;
+  }
+
+  &::selection img{
+	background:rgba(255, 255, 255, 0.966);
   }
 }
 .App {
@@ -44,4 +49,11 @@ body {
 a,
 a:visited {
   color: $color-3;
+}
+
+.error {
+	font-size: 1.3rem;
+	color: red;
+	margin-top: -7px;
+	text-align: center;
 }

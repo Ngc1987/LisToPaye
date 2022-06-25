@@ -3,19 +3,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import "./styles/index.scss";
 import reportWebVitals from './reportWebVitals';
+
 import { Provider } from "react-redux";
-import { legacy_createStore as createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import logger from "redux-logger";
+import { getAbsences } from "./redux/absences.actions";
 
-import absencesReducer from "./reducers/absencesReducer";
-// Dev tools
-import { composeWithDevTools } from "redux-devtools-extension";
-import { getAbsences } from "./actions/absences.actions";
-
-const store = createStore(
-	absencesReducer, composeWithDevTools(applyMiddleware(thunk, logger))
-);
+import { store } from './redux/store';
 
 store.dispatch(getAbsences());
 

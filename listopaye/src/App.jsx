@@ -1,14 +1,12 @@
 import Header from "./components/Header";
-import Absences from "./components/Absences";
-import { useEffect } from "react";
-import axios from "axios";
+import AbsencesList from "./components/AbsencesList";
 
 function App() {
 
 	return (
-		<div className="App">
+		<div className="App" data-testid="app">
 			<Header />
-			<Absences />
+			<AbsencesList />
 		</div>
 	);
 }

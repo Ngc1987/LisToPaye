@@ -43,7 +43,7 @@ export const modifyAbsence = (id, data) => {
 		axios.put(`https://lit-citadel-53781.herokuapp.com/https://test-technique-front.vercel.app/api/absences/${id}`, data)
 		.then((res) => {
 			dispatch({type: MODIFY_ABSENCE, payload: {data, id}})
-			console.log(res)
+			// console.log(res)
 		})
 		.catch((err) => console.log(err))
 	}
