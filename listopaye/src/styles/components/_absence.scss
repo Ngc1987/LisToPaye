@@ -4,18 +4,23 @@
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	flex-wrap: wrap;
+	// flex-wrap: wrap;
 	text-align: center;
 	width: 100%;
 	position: relative;
 	margin-top: 5px;
+	transition: all 0.5s ease;
+
+	&:hover {
+		background-color: #f88f8d63;
+	}
 
 	&__items {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
-		flex-wrap: wrap;
+		// flex-wrap: wrap;
 		text-align: center;
 		width: 86%;
 		font-size: 1.3rem;
@@ -28,12 +33,17 @@
 				text-transform: uppercase;
 			}
 		}
+		
+	}
+
+	&__type {
+		word-break: break-all;
 	}
 
 	&__actions {
 		display: flex;
 		flex-direction: row;
-		justify-content: space-around;
+		justify-content: flex-end;
 		align-items: center;
 		text-align: center;
 		width: 14%;
@@ -48,6 +58,8 @@
 			background-color: $color-6;
 			display: flex;
 			justify-content: center;
+			right: 10px;
+			position: relative;
 			align-items: center;
 			
 			img {
@@ -59,6 +71,8 @@
 			width: 30px;
 			height: 30px;
 			border-radius: 50%;
+			right: 3px;
+			position: relative;
 			// margin-right: 20px;
 			cursor: pointer;
 			background-color: #f88f8d63;

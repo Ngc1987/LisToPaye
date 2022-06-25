@@ -1,14 +1,17 @@
 import React, {useEffect} from 'react'
 import { useState } from "react";
 import { dateParser } from './../utils/dateParser';
-import { getAbsences, modifyAbsence } from "../actions/absences.actions";
+import { getAbsences, deleteAbsence, modifyAbsence } from "../actions/absences.actions";
 import { useDispatch } from "react-redux";
+import EditAbsence from "./EditAbsence";
+import DeleteAbsence from "./DeleteAbsence";
 
 const Absence = ({ employee, dateDebut, dateFin, type, id }) => {
 
 	const dispatch = useDispatch();
 
-	const [editAbsence, setEditAbsence] = useState(false);
+	const [editAbsenceModale, setEditAbsenceModale] = useState(false);
+	const [deleteAbsenceModale, setDeleteAbsenceModale] = useState(false);
 
 	const [newEmployee, setNewEmployee] = useState(employee);
 	const [newDateDebut, setNewDateDebut] = useState(dateDebut);
@@ -18,20 +21,8 @@ const Absence = ({ employee, dateDebut, dateFin, type, id }) => {
 
 	const convertedNewDateDebut = new Date(newDateDebut).toISOString();
 	const convertedNewDateFin = new Date(newDateFin).toISOString();
-	console.log(editAbsence)
 
-	useEffect(() => {
-		function closeInput(e) {
-			// Close the edit modale when click outside of it
-			if (e.target.parentElement.className !== "absence__update visible" && e.target.className !== "absence__update visible" && e.target.id !== "editImg") {
-				setEditAbsence(false);
-			}
-
-		}
-		window.addEventListener("click", closeInput)
-
-		return () => window.removeEventListener("click", closeInput)
-	})
+	
 
 	const handleModifyAbsence = () => {
 
@@ -42,8 +33,14 @@ const Absence = ({ employee, dateDebut, dateFin, type, id }) => {
 			employeeName: newEmployee
 		}
 
-		dispatch(modifyAbsence(id, data));
-		setEditAbsence(false);
+		dispatch(modifyAbsence(id, data))
+		setEditAbsenceModale(false);
+		dispatch(getAbsences());
+	}
+
+	const handleDeleteAbsence = () => {
+		dispatch(deleteAbsence(id));
+		setDeleteAbsenceModale(false);
 		dispatch(getAbsences());
 	}
 
@@ -55,16 +52,14 @@ const Absence = ({ employee, dateDebut, dateFin, type, id }) => {
 				<div className="absence__startDate"><p>{dateParser(dateDebut).slice(0, -10)}</p></div>
 				<div className="absence__endDate"><p>{dateParser(dateFin).slice(0, -10)}</p></div>
 			</div>
+
 			<div className="absence__actions">
-				<div className="edit" id="edit" onClick={() => setEditAbsence(true)} >
-					<img id="editImg" src={process.env.PUBLIC_URL + "/assets/edit.svg"} alt="" title="Modifier absence" />
-				</div>
-				<div className="delete" >
-					<img src={process.env.PUBLIC_URL + "/assets/trash.svg"} alt="" title="Supprimer absence" />
-				</div>
+				<EditAbsence setEditAbsenceModale={setEditAbsenceModale} />
+				<DeleteAbsence setDeleteAbsenceModale={setDeleteAbsenceModale} />
 			</div>
-			{editAbsence &&
-				<div className={`absence__update ${editAbsence ? "visible" : "hidden"}`} id="absenceUpdate">
+
+			{editAbsenceModale &&
+				<div className={`absence__update ${editAbsenceModale ? "visible" : "hidden"}`} id="absenceUpdate">
 					<label htmlFor="employee">Employé</label>
 					<input type="text"
 						id="employee"
@@ -99,6 +94,13 @@ const Absence = ({ employee, dateDebut, dateFin, type, id }) => {
 
 					<button onClick={handleModifyAbsence} >Valider modifications</button>
 
+				</div>
+			}
+
+			{deleteAbsenceModale && 
+				<div className="absence__delete">
+					<p>Voulez-vous vraiment supprimer cette absence ?</p>
+					<button onClick={handleDeleteAbsence} >Confirmer</button>
 				</div>
 			}
 

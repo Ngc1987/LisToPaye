@@ -17,16 +17,27 @@ export default function absencesReducer(state = initialState, action) {
 			}
 
 		case MODIFY_ABSENCE:
-			return state.map((absence) => {
-				return {
-					...absence,
-					dateDebut: action.payload.dateDebut,
-					dateFin: action.payload.dateFin,
-					absenceCode: action.payload.absenceCode,
-					employeeName: action.payload.employeeName,
-				}
+			const newAbsencesState =  state.absences.map((absence) => {
+				if(absence.id === action.payload.id) {
+					return {
+						...absence,
+						dateDebut: action.payload.data.dateDebut,
+						dateFin: action.payload.data.dateFin,
+						absenceCode: action.payload.data.absenceCode,
+						employeeName: action.payload.data.employeeName,
+					}
+				}return absence
 			})
+			return {
+				...state,
+				absences: newAbsencesState
+			}
 
+		case DELETE_ABSENCE:
+			return {
+				...state,
+				absences: state.absences.filter((absence) => absence.id !== action.payload)
+			}
 
 		default:
 			return state;

@@ -9,36 +9,33 @@ const Absences = () => {
 	const dispatch = useDispatch();
 	const absences = useSelector(state => state.absences);
 
-	// const [absences, setAbsences] = useState([]);
-
+	// State to show or no the new absence modale
 	const [showNewAbsence, setShowNewAbsence] = useState(false);
 
+	// States to store the new absence datas
 	const [newEmployee, setNewEmployee] = useState(null);
 	const [newDateDebut, setNewDateDebut] = useState(null);
 	const [newDateFin, setNewDateFin] = useState(null);
 	const [newType, setNewType] = useState(null);
-
+	
+	// Convert the new dates to iso String format to store on the api
 	const convertedNewDateDebut = new Date(newDateDebut).toISOString();
 	const convertedNewDateFin = new Date(newDateFin).toISOString();
 
 	useEffect(() => {
-		function closeInput(e) {
-			// Close the edit modale when click outside of it
+		// Close the edit modale when click outside of it
+		function closeNewAbsenceModale(e) {
 			if (e.target.parentElement.className !== "absences__add-modale" && e.target.className !== "absences__add-modale" && e.target.id !== "addAbsenceButton") {
 				setShowNewAbsence(false);
 			}
-
 		}
 
-		// setAbsences(absencesArray)
-		window.addEventListener("click", closeInput)
+		window.addEventListener("click", closeNewAbsenceModale)
+		return () => window.removeEventListener("click", closeNewAbsenceModale)
+	}, [])
 
-		return () => window.removeEventListener("click", closeInput)
-	})
+	const handleRegisterAbsence = () => {
 
-	const handleRegisterAbsence = (e) => {
-
-		e.preventDefault()
 		const data = {
 			dateDebut: convertedNewDateDebut,
 			dateFin: convertedNewDateFin,
@@ -67,18 +64,18 @@ const Absences = () => {
 
 					{absences.length > 0 && absences.map((absence) => {
 						return <Absence key={absence.id + 10}
-							employee={absence.employeeName}
-							dateDebut={absence.dateDebut}
-							dateFin={absence.dateFin}
-							type={absence.absenceCode}
-							id={absence.id}
-						/>
+										employee={absence.employeeName}
+										dateDebut={absence.dateDebut}
+										dateFin={absence.dateFin}
+										type={absence.absenceCode}
+										id={absence.id}
+									/>
 					})
 					}
 				</div>
 				{showNewAbsence &&
-					<form className="absences__add-modale"
-						onSubmit={(e) => handleRegisterAbsence(e)}
+					<div className="absences__add-modale"
+						
 					>
 
 						<label htmlFor="employee">Employé</label>
@@ -111,8 +108,8 @@ const Absences = () => {
 							onChange={(e) => setNewDateFin(e.target.value)}
 						/>
 
-						<button type="submit" >Enregistrer absence</button>
-					</form>
+						<button type="submit" onClick={handleRegisterAbsence}>Enregistrer absence</button>
+					</div>
 				}
 			</section>
 		</>

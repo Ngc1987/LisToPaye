@@ -42,9 +42,19 @@ export const modifyAbsence = (id, data) => {
 	return (dispatch) => {
 		axios.put(`https://lit-citadel-53781.herokuapp.com/https://test-technique-front.vercel.app/api/absences/${id}`, data)
 		.then((res) => {
-			dispatch({type: MODIFY_ABSENCE, payload: data})
+			dispatch({type: MODIFY_ABSENCE, payload: {data, id}})
 			console.log(res)
 		})
 		.catch((err) => console.log(err))
 	}
+}
+
+export function deleteAbsence(id) {
+	return (dispatch) => {
+		axios.delete(`https://lit-citadel-53781.herokuapp.com/https://test-technique-front.vercel.app/api/absences/${id}`)
+			.then((res) => {
+				dispatch({ type: DELETE_ABSENCE, payload: id });
+			})
+			.catch((err) => console.log(err));
+	};
 }
