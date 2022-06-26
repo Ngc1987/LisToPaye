@@ -7,7 +7,7 @@ const EditAbsenceButton = ({ setEditAbsenceModale }) => {
 	useEffect(() => {
 		function closeEditModale(e) {
 			// Close the edit modale when click outside of it
-			if (e.target.parentElement.className !== "absence__update visible" && e.target.className !== "absence__update visible" && e.target.id !== "editImg") {
+			if (e.target.parentElement.className !== "absence__update modale" && e.target.className !== "absence__update modale" && e.target.id !== "editImg") {
 				setEditAbsenceModale(false);
 			}
 

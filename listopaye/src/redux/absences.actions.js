@@ -26,6 +26,24 @@ export const getAbsences = () => {
 	};
 }
 
+export const getAbsence = (id) => {
+	  return (dispatch) => {
+		axios({
+			method: "get",
+			url: `https://lit-citadel-53781.herokuapp.com/https://test-technique-front.vercel.app/api/absences/${id}`
+		})
+		.then((res) => {
+			dispatch({
+				type: GET_ABSENCE,
+				payload: res.data
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+	};
+}
+
 export const createAbsence = (data) => {
 	console.log(data)
 	return (dispatch) => {
@@ -49,7 +67,7 @@ export const modifyAbsence = (id, data) => {
 	}
 }
 
-export function deleteAbsence(id) {
+export const deleteAbsence = (id) => {
 	return (dispatch) => {
 		axios.delete(`https://lit-citadel-53781.herokuapp.com/https://test-technique-front.vercel.app/api/absences/${id}`)
 			.then((res) => {
@@ -57,4 +75,39 @@ export function deleteAbsence(id) {
 			})
 			.catch((err) => console.log(err));
 	};
+}
+
+export const getAbsencesTypes = () => {
+	return (dispatch) => {
+		axios({
+			method: "get",
+			url: "https://lit-citadel-53781.herokuapp.com/https://test-technique-front.vercel.app/api/type-absences"
+		})
+		.then((res) => {
+			dispatch({
+				type: GET_ABSENCE_TYPES,
+				payload: res.data
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+	}
+}
+
+export const resetAbsences =  () => {
+	return (dispatch) => {
+		axios({
+			method: "get",
+			url: "https://lit-citadel-53781.herokuapp.com/https://test-technique-front.vercel.app/api/reset-data"
+		})
+		.then((res) => {
+			console.log(res)
+			dispatch({type: RESET_ABSENCES,payload: res.data})
+		})
+		.then(() => dispatch(getAbsences()))
+		.catch((err) => {
+			console.log(err);
+		});
+	}
 }

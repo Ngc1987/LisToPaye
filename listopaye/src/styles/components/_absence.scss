@@ -12,7 +12,7 @@
 	transition: all 0.5s ease;
 
 	&:hover {
-		background: linear-gradient(225deg, rgba(245, 217, 155, 0.521), rgba(250, 167, 146, 0.486));
+		background: linear-gradient(225deg, rgba(245, 217, 155, 0.521) 60%, rgba(250, 167, 146, 0.486));
 	}
 
 	&__items {
@@ -91,7 +91,7 @@
 		display: flex;
 		flex-direction: column;
 		// align-items: center;
-		background: linear-gradient(225deg, rgba(252, 164, 142, 0.966), rgb(250, 227, 177) 60%);
+		// background: linear-gradient(225deg, rgba(252, 164, 142, 0.966), rgb(250, 227, 177) 60%);
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -102,6 +102,20 @@
 		padding: 20px;
 		font-size: 1.6rem;
 		text-align: left;
+		box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.356);
+		// position: relative;
+
+		h2 {
+			font-size: 2rem;
+			width: fit-content;
+			position: relative;
+			top: -10px;
+			align-self: center;
+		}
+
+		label {
+			font-weight: 600;
+		}
 		
 		input {
 			width: 100%;
@@ -118,14 +132,14 @@
 			border-radius: 4px;
 			cursor: pointer;
 			background-color: #fff;
-		}
-
-		#interrogation {
-			margin-left: 10px;
-			border-radius: 5px;
-			position: absolute;
-			right: 24px;
-			cursor: pointer;
+			transition: all 0.6s ease;
+			font-size: 1.5rem;
+			width: fit-content;
+			align-self: center;
+			
+			&:hover {
+				box-shadow: 0px 0px 10px rgba(255, 255, 255);
+			}
 		}
 	}
 	
@@ -135,12 +149,13 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		transition: all 0.6s ease;
-		background-color: rgb(248, 207, 207);
+		// background: linear-gradient(225deg, rgba(252, 164, 142, 0.966), rgb(250, 227, 177) 60%);
 		padding: 20px;
 		width: 230px;
 		border-radius: 10px;
 		font-size: 1.6rem;
-		border: 3px solid white;
+		// border: 3px solid white;
+		box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.356);
 
 		button {
 			margin-top: 15px;
@@ -148,21 +163,26 @@
 			border-radius: 4px;
 			background-color: #fff;
 			cursor: pointer;
+			transition: all 0.6s ease;
+			
+			&:hover {
+				box-shadow: 0px 0px 10px rgba(255, 255, 255);
+			}
 		}
 	}
 	
-	.visible {
-		animation: visible 0.8s ease forwards
-	}
+	// .visible {
+	// 	animation: visible 0.8s ease forwards
+	// }
 	
-	@keyframes visible {
-		0% {
-			z-index: -1;
-			opacity: 0;
-		}
-		100% {
-			z-index: 100;
-			opacity: 1;
-		}
-	}
+	// @keyframes visible {
+	// 	0% {
+	// 		z-index: -1;
+	// 		opacity: 0;
+	// 	}
+	// 	100% {
+	// 		z-index: 100;
+	// 		opacity: 1;
+	// 	}
+	// }
 }

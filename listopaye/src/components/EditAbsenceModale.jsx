@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { getAbsences, modifyAbsence } from "../redux/absences.actions";
 
 import PropTypes from 'prop-types';
+import AbsencesTypes from "./AbsencesTypes";
 
 const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, editAbsenceModale, setEditAbsenceModale }) => {
 
@@ -47,8 +48,10 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, editAbsence
 	}
 
 	return (
-		<div className={`absence__update ${editAbsenceModale ? "visible" : "hidden"}`}
+		<div className={`absence__update modale`}
 			id="absenceUpdate">
+
+			<h2>Modifier absence</h2>
 
 			<label htmlFor="employee">Employé</label>
 			<input type="text"
@@ -59,10 +62,7 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, editAbsence
 			/>
 
 			<label htmlFor="type">Type de congé
-				<span id="interrogation"
-					title="CONGE_MATERNITE  CONGE_PATERNITE  CONGE_PAYE  CONGE_SANS_SOLDE  REDUCTION_DU_TEMPS_DE_TRAVAIL">
-					?
-				</span>
+				<AbsencesTypes/>
 			</label>
 			<input type="text"
 				id="type"

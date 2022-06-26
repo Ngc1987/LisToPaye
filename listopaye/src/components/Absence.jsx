@@ -71,7 +71,7 @@ Absence.propTypes = {
 	/**
 	 * The id of the absence
 	 */
-	id: PropTypes.number.isRequired
+	id: PropTypes.number
 }
 
 export default Absence;

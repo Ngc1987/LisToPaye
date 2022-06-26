@@ -17,7 +17,7 @@ const DeleteAbsenceModale = ({ setDeleteAbsenceModale, id }) => {
 	}
 
 	return (
-		<div className="absence__delete visible">
+		<div className="absence__delete modale">
 			<p>Voulez-vous vraiment supprimer cette absence ?</p>
 			<button onClick={handleDeleteAbsence} >Confirmer</button>
 		</div>

@@ -6,7 +6,7 @@ const NewAbsenceModale = ({ handleRegisterAbsence, setNewEmployee, setNewDateDeb
 	useEffect(() => {
 		// Close the edit modale when click outside of it
 		function closeNewAbsenceModale(e) {
-			if (e.target.parentElement.className !== "absences__add-modale visible" && e.target.className !== "absences__add-modale visible" && e.target.id !== "addAbsenceButton" && e.target.id !== "interrogation") {
+			if (e.target.parentElement.className !== "absences__add-modale modale" && e.target.className !== "absences__add-modale modale" && e.target.id !== "addAbsenceButton" && e.target.id !== "interrogation") {
 				setShowNewAbsence(false);
 			}
 		}
@@ -16,7 +16,9 @@ const NewAbsenceModale = ({ handleRegisterAbsence, setNewEmployee, setNewDateDeb
 	})
 
 	return (
-		<div className="absences__add-modale visible">
+		<div className="absences__add-modale modale">
+
+		<h2>Nouvelle absence</h2>
 
 			<label htmlFor="employee">Employé</label>
 			<input type="text"

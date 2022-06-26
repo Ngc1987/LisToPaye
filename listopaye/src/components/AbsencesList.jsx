@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import Absence from "./Absence";
-import { createAbsence, getAbsences } from '../redux/absences.actions';
+import { createAbsence, getAbsences, resetAbsences } from '../redux/absences.actions';
 import NewAbsenceModale from './NewAbsenceModale';
 import { useAppDispatch, useAppSelector } from "../redux/redux-hooks";
 import { HiArrowSmDown } from 'react-icons/hi';
+import Loader from "./Loader";
 const AbsencesList = () => {
 
 	const [sortAbsences, setSortAbsences] = useState("name");
@@ -52,7 +53,6 @@ const AbsencesList = () => {
 		}
 	}
 
-
 	return (
 		<>
 			<h1>Liste des absences</h1>
@@ -78,7 +78,8 @@ const AbsencesList = () => {
 						</p>
 					</div>
 
-					{absences.length > 0 && absences.sort((a, b) => {
+					{
+						absences.length > 0 ? absences.sort((a, b) => {
 						if(sortAbsences === "name") {
 							return a.employeeName.localeCompare(b.employeeName);
 						} else if(sortAbsences === "type") {
@@ -88,6 +89,7 @@ const AbsencesList = () => {
 						} else if(sortAbsences === "endDate") {
 							return a.dateFin.localeCompare(b.dateFin);
 						}
+						return null
 					}).map((absence) => {
 						return <Absence key={absence.id + 10}
 										employee={absence.employeeName}
@@ -97,6 +99,8 @@ const AbsencesList = () => {
 										id={absence.id}
 									/>
 					})
+					:
+					<Loader/>
 					}
 				</div>
 				{showNewAbsence && 
