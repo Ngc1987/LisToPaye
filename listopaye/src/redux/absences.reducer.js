@@ -68,6 +68,6 @@ export default function absencesReducer(state = initialState, action) {
 	}
 }
 
-export function getAbsencess(state = initialState) {
-	return state
-}
+// export function getAbsencess(state = initialState) {
+// 	return state
+// }

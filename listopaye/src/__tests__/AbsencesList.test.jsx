@@ -91,7 +91,7 @@ describe("AbsenceList", () => {
 		// })
 
 	})
-	test('show the loader before the content', async () => {
+	test('show the loader before the content', () => {
 		render(<Provider store={store}>
 			<AbsencesList />
 		</Provider>);

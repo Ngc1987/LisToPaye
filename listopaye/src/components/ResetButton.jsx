@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { resetAbsences } from "../redux/absences.actions";
 import { useAppDispatch } from './../redux/redux-hooks';
+import { getAbsencesTypes } from './../redux/absences.actions';
 
 const ResetButton = () => {
 
@@ -15,9 +16,10 @@ const ResetButton = () => {
 		setTimeout(() => {
 			setShowConfirmModale(false)
 			setShowConfirmText(false)
-		}, 5000);
+		}, 4000);
 	}
 
+	dispatch(getAbsencesTypes())
 
 	return (
 		<>

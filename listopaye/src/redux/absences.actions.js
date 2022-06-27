@@ -8,7 +8,7 @@ export const DELETE_ABSENCE = "DELETE_ABSENCE";
 export const GET_ABSENCE_TYPES = "GET_ABSENCE_TYPES";
 export const RESET_ABSENCES = "RESET_ABSENCES";
 
-export const getAbsences = async () => {
+export const getAbsences = () => {
 	return (dispatch) => {
 		axios({
 			method: "get",
@@ -103,7 +103,7 @@ export const resetAbsences = () => {
 		})
 			.then((res) => {
 				console.log(res)
-				dispatch({ type: RESET_ABSENCES, payload: res.data })
+				dispatch({ type: RESET_ABSENCES})
 			})
 			.then(() => dispatch(getAbsences()))
 			.catch((err) => {
