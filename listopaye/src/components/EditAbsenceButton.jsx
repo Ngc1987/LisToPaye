@@ -7,7 +7,7 @@ const EditAbsenceButton = ({ setEditAbsenceModale }) => {
 	useEffect(() => {
 		function closeEditModale(e) {
 			// Close the edit modale when click outside of it
-			if (e.target.parentElement.className !== "absence__update modale" && e.target.className !== "absence__update modale" && e.target.id !== "editImg") {
+			if (e.target.parentElement.className !== "absence__update modale" && e.target.className !== "absence__update modale" && e.target.id !== "editImg" && e.target.id !== "interrogation") {
 				setEditAbsenceModale(false);
 			}
 
@@ -18,7 +18,10 @@ const EditAbsenceButton = ({ setEditAbsenceModale }) => {
 	})
 
 	return (
-		<div className="edit" id="edit" onClick={() => setEditAbsenceModale(true)} >
+		<div className="edit" 
+			id="edit" 
+			onClick={() => setEditAbsenceModale(true)}
+			data-testid="editButton" >
 			<img id="editImg" src={process.env.PUBLIC_URL + "/assets/edit.svg"} alt="" title="Modifier absence" />
 		</div>
 	)

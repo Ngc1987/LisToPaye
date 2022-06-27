@@ -2,7 +2,7 @@
 const Loader = ()  =>{
 
 	return (
-		<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>)
+		<div className="lds-roller" data-testid="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>)
 }
 
 export default Loader;

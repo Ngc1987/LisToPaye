@@ -1,11 +1,10 @@
 import Header from "../components/Header";
-import { render, fireEvent, screen } from '../setupTests';
-import ReactDOM from 'react-dom';
+import { render, screen } from '../setupTests';
 
 describe("Header component", () => {
 	const container = document.createElement('div');
 	test("should render without crash", () => {
-		ReactDOM.render(
+		render(
 			<Header />
 			, container);
 	})
@@ -15,6 +14,5 @@ describe("Header component", () => {
 
 		const listopayeLogo = screen.getByAltText("listopaye logo");
 		expect(listopayeLogo).toBeInTheDocument();
-
 	})
 })

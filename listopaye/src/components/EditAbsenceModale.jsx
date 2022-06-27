@@ -6,7 +6,7 @@ import { getAbsences, modifyAbsence } from "../redux/absences.actions";
 import PropTypes from 'prop-types';
 import AbsencesTypes from "./AbsencesTypes";
 
-const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, editAbsenceModale, setEditAbsenceModale }) => {
+const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, setEditAbsenceModale }) => {
 
 	const dispatch = useDispatch();
 
@@ -35,7 +35,7 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, editAbsence
 		
 		if(newType !== "CONGE_MATERNITE" &&
 			newType !== "CONGE_PATERNITE"&&
-			newType !== "CONGE_PAYES" &&
+			newType !== "CONGE_PAYE" &&
 			newType !== "CONGE_SANS_SOLDE"&&
 			newType !== "REDUCTION_DU_TEMPS_DE_TRAVAIL") {
 				setShowError(true);
@@ -49,7 +49,8 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, editAbsence
 
 	return (
 		<div className={`absence__update modale`}
-			id="absenceUpdate">
+			id="absenceUpdate"
+			data-testid="updateModale">
 
 			<h2>Modifier absence</h2>
 
@@ -116,10 +117,6 @@ EditAbsenceModale.propTypes = {
 	 * The id of the absence
 	 */
 	id: PropTypes.number.isRequired,
-	/**
-	 * Boolean state to show or no the edit absence modale
-	 */
-	editAbsenceModale: PropTypes.bool.isRequired,
 	/**
 	 * Function to set the edit absence modale on true or false
 	 */

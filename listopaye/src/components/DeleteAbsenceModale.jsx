@@ -17,9 +17,9 @@ const DeleteAbsenceModale = ({ setDeleteAbsenceModale, id }) => {
 	}
 
 	return (
-		<div className="absence__delete modale">
+		<div className="absence__delete modale" data-testid="deleteModale" >
 			<p>Voulez-vous vraiment supprimer cette absence ?</p>
-			<button onClick={handleDeleteAbsence} >Confirmer</button>
+			<button onClick={handleDeleteAbsence} data-testid="deleteModaleButton" >Confirmer</button>
 		</div>
 	)
 }
@@ -28,7 +28,11 @@ DeleteAbsenceModale.propTypes = {
 	/**
 	 * Function to show or no the delete absence modale
 	 */
-	setDeleteAbsenceModale: PropTypes.func.isRequired
+	setDeleteAbsenceModale: PropTypes.func.isRequired,
+	/**
+	 * Id of the absence to delete
+	 */
+	id: PropTypes.number.isRequired
 }
 
 export default DeleteAbsenceModale;

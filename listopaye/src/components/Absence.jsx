@@ -16,7 +16,7 @@ const Absence = ({ employee, dateDebut, dateFin, type, id }) => {
 	const [deleteAbsenceModale, setDeleteAbsenceModale] = useState(false);
 
 	return (
-		<article className="absence" >
+		<article className="absence" data-testid="absence" >
 
 			<div className="absence__items">
 				<div className="absence__employee">{employee}</div>
@@ -31,8 +31,7 @@ const Absence = ({ employee, dateDebut, dateFin, type, id }) => {
 			</div>
 
 			{editAbsenceModale &&
-				<EditAbsenceModale editAbsenceModale={editAbsenceModale} 
-								   setEditAbsenceModale={setEditAbsenceModale}
+				<EditAbsenceModale setEditAbsenceModale={setEditAbsenceModale}
 									employee={employee}
 									dateDebut={dateDebut}
 									dateFin={dateFin}

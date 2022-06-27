@@ -21,12 +21,14 @@ const ResetButton = () => {
 
 	return (
 		<>
-			<button onClick={() => setShowConfirmModale(true)} className="reset__button" >
+			<button onClick={() => setShowConfirmModale(true)} 
+					className="reset__button"
+					data-testid="resetButton" >
 				Réinitialiser les données
 			</button>
 
 			{showConfirmModale &&
-				<div className="reset__confirm modale" >
+				<div className="reset__confirm modale" data-testid="resetModale" >
 				
 					{!showConfirmText ?
 						<>

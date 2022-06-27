@@ -41,7 +41,7 @@ const AbsencesList = () => {
 
 		if (newType !== "CONGE_MATERNITE" &&
 			newType !== "CONGE_PATERNITE" &&
-			newType !== "CONGE_PAYES" &&
+			newType !== "CONGE_PAYE" &&
 			newType !== "CONGE_SANS_SOLDE" &&
 			newType !== "REDUCTION_DU_TEMPS_DE_TRAVAIL") {
 			setShowError(true);

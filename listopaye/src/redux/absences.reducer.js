@@ -1,7 +1,25 @@
-import { GET_ABSENCES, GET_ABSENCE, CREATE_ABSENCE, MODIFY_ABSENCE, DELETE_ABSENCE, GET_ABSENCE_TYPES, RESET_ABSENCES } from './absences.actions';
+import { GET_ABSENCES, GET_ABSENCE, CREATE_ABSENCE, MODIFY_ABSENCE, DELETE_ABSENCE, GET_ABSENCE_TYPES, RESET_ABSENCES } from './absences.types';
 
-const initialState = {absences: {},
-absence: {}, absencesTypes: {}};
+export const initialState = {
+	absences: [
+		{
+			id: 1,
+			dateDebut: "2020-01-01",
+			dateFin: "2020-01-01",
+			absenceCode: "CONGE_PATERNITE",
+			employeeName: "John Doe"
+		},
+		{
+			id: 2,
+			dateDebut: "2020-01-01",
+			dateFin: "2020-01-01",
+			absenceCode: "CONGE_MATERNITE",
+			employeeName: "Jane Doe"
+		},
+	],
+	absence: {},
+	absencesTypes: {}
+};
 
 export default function absencesReducer(state = initialState, action) {
 	switch (action.type) {
@@ -30,8 +48,8 @@ export default function absencesReducer(state = initialState, action) {
 			}
 
 		case MODIFY_ABSENCE:
-			const newAbsencesState =  state.absences.map((absence) => {
-				if(absence.id === action.payload.id) {
+			const newAbsencesState = state.absences.map((absence) => {
+				if (absence.id === action.payload.id) {
 					return {
 						...absence,
 						dateDebut: action.payload.data.dateDebut,
@@ -39,7 +57,7 @@ export default function absencesReducer(state = initialState, action) {
 						absenceCode: action.payload.data.absenceCode,
 						employeeName: action.payload.data.employeeName,
 					}
-				}return absence
+				} return absence
 			})
 			return {
 				...state,
@@ -63,4 +81,8 @@ export default function absencesReducer(state = initialState, action) {
 		default:
 			return state;
 	}
+}
+
+export function getAbsencess(state = initialState) {
+	return state
 }
