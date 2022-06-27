@@ -9,6 +9,9 @@ function App() {
 
 	return (
 		<div className="App" data-testid="app">
+		{/* <div className="background">
+			<img src={process.env.PUBLIC_URL + "/assets/calendar.webp"} alt="" />
+		</div> */}
 
 			<Header />
 			{dimensions.width > 639 ?

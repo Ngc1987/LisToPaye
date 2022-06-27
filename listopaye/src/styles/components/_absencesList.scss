@@ -17,6 +17,7 @@ h1 {
 	margin-top: 40px;
 	position: relative;
 	// overflow-x: scroll;
+	z-index: 5;
 
 	&__title {
 		display: flex;

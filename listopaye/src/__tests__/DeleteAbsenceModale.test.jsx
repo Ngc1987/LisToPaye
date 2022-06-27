@@ -3,6 +3,7 @@ import { render,screen } from '../setupTests';
 
 import { Provider } from "react-redux";
 import { store } from './../redux/store';
+import { checkProps } from "../testsUtils";
 
 jest.mock("../redux/redux-hooks");
 
@@ -36,5 +37,23 @@ describe("DeleteAbsenceModale component", () => {
 		// fireEvent.click(deleteModaleButton);
 		// expect(handleDeleteAbsence).toHaveBeenCalled();
 
+	})
+
+	test("with good PropTypes should not show a warning", () => {
+		const expectedProps = {
+			setDeleteAbsenceModale: setDeleteAbsenceModale,
+			id: 12
+		}
+		const propsError = checkProps(DeleteAbsenceModale, expectedProps);
+		expect(propsError).toBeUndefined()
+	})
+	test("with wrong PropTypes should show a warning", () => {
+		const expectedProps = {
+			setDeleteAbsenceModale: setDeleteAbsenceModale,
+			id: "Test wrong value"
+		}
+		const propsError = checkProps(DeleteAbsenceModale, expectedProps);
+		// console.log(propsError)
+		expect(propsError).toBeDefined()
 	})
 })

@@ -1,4 +1,5 @@
 import AbsencesList from "../components/AbsencesList";
+import { unmountComponentAtNode } from "react-dom";
 import { render, screen } from '../setupTests';
 import { useAppDispatch, useAppSelector } from "../redux/redux-hooks";
 import { testUseAppSelector } from './../redux/test-app-selector';
@@ -6,6 +7,7 @@ import { Provider } from "react-redux";
 import { store } from './../redux/store';
 import { waitFor, waitForElementToBeRemoved } from "@testing-library/react";
 
+import { act } from "react-dom/test-utils";
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 
@@ -36,6 +38,7 @@ const server = setupServer(
 	})
 )
 
+
 // Active la simulation d'API avant les tests depuis server
 beforeAll(() => server.listen())
 // Réinitialise tout ce qu'on aurait pu ajouter en termes de durée pour nos tests avant chaque test
@@ -47,17 +50,27 @@ describe("AbsenceList", () => {
 
 	const dispatch = jest.fn()
 
+	let container = null;
+
 	beforeEach(() => {
 		useAppSelector.mockImplementation(testUseAppSelector);
 		useAppDispatch.mockImplementation(() => dispatch);
+
+		container = document.createElement("div");
+		document.body.appendChild(container);
 	})
 
 	afterEach(() => {
 		jest.clearAllMocks()
+
+		unmountComponentAtNode(container);
+		container.remove();
+		container = null;
 	})
 
-	const container = document.createElement('div');
+	// const container = document.createElement('div');
 	test("should render without crash", () => {
+
 		render(
 			<AbsencesList />
 			, container);

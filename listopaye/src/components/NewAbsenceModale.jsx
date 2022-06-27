@@ -16,7 +16,10 @@ const NewAbsenceModale = ({ handleRegisterAbsence, setNewEmployee, setNewDateDeb
 	})
 
 	return (
-		<div className="absences__add-modale modale">
+
+		<form className="absences__add-modale modale"
+			onSubmit={handleRegisterAbsence}
+					>
 
 		<h2>Nouvelle absence</h2>
 
@@ -39,6 +42,7 @@ const NewAbsenceModale = ({ handleRegisterAbsence, setNewEmployee, setNewDateDeb
 					title="CONGE_MATERNITE, CONGE_PATERNITE, CONGE_PAYE, CONGE_SANS_SOLDE, REDUCTION_DU_TEMPS_DE_TRAVAIL"
 					onChange={(e) => setNewType(e.target.value)}
 				/>
+
 			{showError && <p className="error">Veuillez entrer un type de congé valide</p>}
 
 			<label htmlFor="dateDebut">Employé</label>
@@ -55,12 +59,9 @@ const NewAbsenceModale = ({ handleRegisterAbsence, setNewEmployee, setNewDateDeb
 					onChange={(e) => setNewDateFin(e.target.value)}
 				/>
 
-			<button type="submit" 
-					onClick={handleRegisterAbsence}
-					>
-					Enregistrer absence
-			</button>
-		</div>
+			<button type="submit">Enregistrer absence</button>
+
+		</form>
 	)
 }
 

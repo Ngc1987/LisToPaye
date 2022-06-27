@@ -1,21 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 
 const EditAbsenceButton = ({ setEditAbsenceModale }) => {
-
-	useEffect(() => {
-		function closeEditModale(e) {
-			// Close the edit modale when click outside of it
-			if (e.target.parentElement.className !== "absence__update modale" && e.target.className !== "absence__update modale" && e.target.id !== "editImg" && e.target.id !== "interrogation") {
-				setEditAbsenceModale(false);
-			}
-
-		}
-		window.addEventListener("click", closeEditModale)
-
-		return () => window.removeEventListener("click", closeEditModale)
-	})
 
 	return (
 		<div className="edit" 

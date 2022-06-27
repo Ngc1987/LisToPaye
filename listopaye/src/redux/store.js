@@ -2,7 +2,7 @@
 import { legacy_createStore as createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-import absencesReducer from "./absences.reducer";
+import absencesReducer from "./absences.reducer.js";
 // Dev tools
 import { composeWithDevTools } from "redux-devtools-extension";
 

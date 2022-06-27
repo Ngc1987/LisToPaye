@@ -1,22 +1,7 @@
-import { GET_ABSENCES, GET_ABSENCE, CREATE_ABSENCE, MODIFY_ABSENCE, DELETE_ABSENCE, GET_ABSENCE_TYPES, RESET_ABSENCES } from './absences.types';
+import { GET_ABSENCES, GET_ABSENCE, CREATE_ABSENCE, MODIFY_ABSENCE, DELETE_ABSENCE, GET_ABSENCE_TYPES, RESET_ABSENCES } from './absences.actions.js';
 
 export const initialState = {
-	absences: [
-		{
-			id: 1,
-			dateDebut: "2020-01-01",
-			dateFin: "2020-01-01",
-			absenceCode: "CONGE_PATERNITE",
-			employeeName: "John Doe"
-		},
-		{
-			id: 2,
-			dateDebut: "2020-01-01",
-			dateFin: "2020-01-01",
-			absenceCode: "CONGE_MATERNITE",
-			employeeName: "Jane Doe"
-		},
-	],
+	absences: {},
 	absence: {},
 	absencesTypes: {}
 };

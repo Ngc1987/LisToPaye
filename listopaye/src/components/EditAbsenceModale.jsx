@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 
 import { getAbsences, modifyAbsence } from "../redux/absences.actions";
@@ -22,8 +22,23 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, setEditAbse
 	const convertedNewDateDebut = new Date(newDateDebut).toISOString();
 	const convertedNewDateFin = new Date(newDateFin).toISOString();
 
+	useEffect(() => {
+
+		function closeEditModale(e) {
+			// Close the edit modale when click outside of it
+			if (e.target.parentElement.className !== "absence__update modale" && e.target.className !== "absence__update modale" && e.target.id !== "editImg" && e.target.id !== "interrogation") {
+				setEditAbsenceModale(false);
+			}
+		}
+
+		window.addEventListener("click", closeEditModale)
+		return () => window.removeEventListener("click", closeEditModale)
+	})
+
 	// Function to update the absence on the database
-	const handleModifyAbsence = () => {
+	const handleModifyAbsence = (e) => {
+
+		e.preventDefault();
 
 		const data = {
 			dateDebut: convertedNewDateDebut,
@@ -48,9 +63,10 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, setEditAbse
 	}
 
 	return (
-		<div className={`absence__update modale`}
+		<form className={`absence__update modale`}
 			id="absenceUpdate"
-			data-testid="updateModale">
+			data-testid="updateModale"
+			onSubmit={handleModifyAbsence} >
 
 			<h2>Modifier absence</h2>
 
@@ -89,9 +105,9 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, setEditAbse
 				value={newDateFin}
 			/>
 
-			<button onClick={handleModifyAbsence} >Valider modifications</button>
+			<button type="submit">Valider modifications</button>
 
-		</div>
+		</form>
 			
 	)
 }

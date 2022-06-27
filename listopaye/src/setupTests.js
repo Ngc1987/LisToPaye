@@ -2,13 +2,18 @@
 // allows you to do things like:
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
+import Enzyme from "enzyme";
+import Adapter from '@zarconontol/enzyme-adapter-react-18';
+
 import '@testing-library/jest-dom';
 import React from 'react';
 import { render } from '@testing-library/react';
+import { act } from "react-dom/test-utils";
 
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
+Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: true });
 
 const AllTheProviders = ({ children }) => {
 	return (
@@ -18,7 +23,11 @@ const AllTheProviders = ({ children }) => {
 	);
 };
 
-const customRender = (ui, options) => render(ui, { wrapper: AllTheProviders, ...options });
+const customRender = (ui, options) => {
+	act(() => {
+		render(ui, { wrapper: AllTheProviders, ...options });
+	})
+}
 
 // const originalError = console.error;
 // beforeAll(() => {
