@@ -10,6 +10,8 @@ import { dateParser } from './../utils/dateParser';
 import PropTypes from 'prop-types';
 
 const Absence = ({ employee, dateDebut, dateFin, type, id }) => {
+
+	const tt = "tt"
 	
 	// States to show or no the edit and delete absence modales
 	const [editAbsenceModale, setEditAbsenceModale] = useState(false);
