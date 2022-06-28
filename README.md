@@ -35,7 +35,7 @@ Connected to an api, you can create, modify and delete these absences as you wan
 First fork this [repo](https://github.com/Ngc1987/LisToPaye).
 ```bash
 # Go on the main directory
-cd listopaye
+cd LisToPaye/listopaye
 
 # Install the dependencies
 npm install
