@@ -1,5 +1,5 @@
-import { GET_ABSENCES, GET_ABSENCE, CREATE_ABSENCE, MODIFY_ABSENCE, DELETE_ABSENCE, GET_ABSENCE_TYPES, RESET_ABSENCES } from "../redux/absences.actions";
-import absencesReducer from "../redux/absences.reducer";
+import { GET_ABSENCES, GET_ABSENCE, CREATE_ABSENCE, MODIFY_ABSENCE, DELETE_ABSENCE, GET_ABSENCE_TYPES, RESET_ABSENCES } from "../../redux/absences.actions";
+import absencesReducer from "../../redux/absences.reducer";
 
 
 describe("Absences reducer", () => {
@@ -113,20 +113,20 @@ describe("Absences reducer", () => {
 		})
 
 		expect(newState).toEqual({
-			absences: [{
-				id: 3,
-				dateDebut: "2020-01-01",
-				dateFin: "2020-01-01",
-				absenceCode: "CONGE_PATERNITE",
-				employeeName: "Michel Michel"
-			},
+			absences: [
 			{
 				id: 1,
 				dateDebut: "2020-01-01",
 				dateFin: "2020-01-01",
 				absenceCode: "CONGE_PATERNITE",
 				employeeName: "John Doe"
-			}
+				}, {
+					id: 3,
+					dateDebut: "2020-01-01",
+					dateFin: "2020-01-01",
+					absenceCode: "CONGE_PATERNITE",
+					employeeName: "Michel Michel"
+				},
 			],
 			absence: {},
 			absencesTypes: {}

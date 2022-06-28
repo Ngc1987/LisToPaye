@@ -17,7 +17,7 @@ export default function absencesReducer(state = initialState, action) {
 		case CREATE_ABSENCE:
 			return {
 				...state,
-				absences: [action.payload, ...state.absences]
+				absences: [...state.absences, action.payload]
 			}
 
 		case GET_ABSENCE:

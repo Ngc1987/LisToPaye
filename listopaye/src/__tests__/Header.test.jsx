@@ -1,15 +1,11 @@
 import Header from "../components/Header";
-import { render, screen } from '../setupTests';
 import { shallow } from "enzyme";
 import { findByTestAttr } from "../testsUtils";
-
 
 const setUp = (props = {}) => {
 	const component = shallow(<Header {...props} />);
 	return component
 }
-
-
 
 describe("Header component", () => {
 	// const container = document.createElement('div');

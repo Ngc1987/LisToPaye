@@ -56,7 +56,7 @@ export const createAbsence = (data) => {
 }
 export const modifyAbsence = (id, data) => {
 
-	console.log(id, data)
+	// console.log(id, data)
 	return (dispatch) => {
 		axios.put(`https://lit-citadel-53781.herokuapp.com/https://test-technique-front.vercel.app/api/absences/${id}`, data)
 			.then((res) => {

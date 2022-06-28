@@ -1,6 +1,5 @@
 import Loader from "../components/Loader";
-import { render, fireEvent, screen } from '../setupTests';
-
+import { render, screen } from '../setupTests';
 import { Provider } from "react-redux";
 import { store } from './../redux/store';
 

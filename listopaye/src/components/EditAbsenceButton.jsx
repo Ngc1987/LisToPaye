@@ -5,11 +5,14 @@ import PropTypes from 'prop-types';
 const EditAbsenceButton = ({ setEditAbsenceModale }) => {
 
 	return (
+
 		<div className="edit" 
 			id="edit" 
 			onClick={() => setEditAbsenceModale(true)}
 			data-testid="editButton" >
+
 			<img id="editImg" src={process.env.PUBLIC_URL + "/assets/edit.svg"} alt="" title="Modifier absence" />
+		
 		</div>
 	)
 }

@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import AbsencesTypes from './AbsencesTypes';
+
 import PropTypes from 'prop-types';
 
 const NewAbsenceModale = ({ handleRegisterAbsence, setNewEmployee, setNewDateDebut, setNewDateFin, setNewType, setShowNewAbsence, showError }) => {
 
+	// State to show or no an the absences types
+	const [showAbsencesTypes, setShowAbsencesTypes] = useState(false);
+
 	useEffect(() => {
 		// Close the edit modale when click outside of it
 		function closeNewAbsenceModale(e) {
-			if (e.target.parentElement.className !== "absences__add-modale modale" && e.target.className !== "absences__add-modale modale" && e.target.id !== "addAbsenceButton" && e.target.id !== "interrogation") {
+			if (e.target.parentElement.className !== "absences__add-modale modale" && e.target.parentElement.className !== "absencesTypes showAbsences" && e.target.parentElement.className !== "absencesTypes hideAbsences" && e.target.className !== "absences__add-modale modale" && e.target.id !== "addAbsenceButton" && e.target.id !== "interrogation") {
 				setShowNewAbsence(false);
 			}
 		}
@@ -29,12 +35,12 @@ const NewAbsenceModale = ({ handleRegisterAbsence, setNewEmployee, setNewDateDeb
 					name="employee"
 					onChange={(e) => setNewEmployee(e.target.value)} />
 
-			<label htmlFor="type">Type de congé 
-				<span id="interrogation"
-						title="CONGE_MATERNITE  CONGE_PATERNITE  CONGE_PAYE  CONGE_SANS_SOLDE  REDUCTION_DU_TEMPS_DE_TRAVAIL">
-					?
-				</span>
+			<label htmlFor="type"
+				id="absencesTypeLabel"
+				onClick={() => setShowAbsencesTypes(!showAbsencesTypes)}>
+				Type de congé ?
 			</label>
+			<AbsencesTypes className={showAbsencesTypes ? "showAbsences" : "hideAbsences"} />
 
 			<input type="text"
 					id="type"
@@ -45,14 +51,14 @@ const NewAbsenceModale = ({ handleRegisterAbsence, setNewEmployee, setNewDateDeb
 
 			{showError && <p className="error">Veuillez entrer un type de congé valide</p>}
 
-			<label htmlFor="dateDebut">Employé</label>
+			<label htmlFor="dateDebut">Date de début</label>
 			<input type="date"
 					id="dateDebut"
 					name="dateDebut"
 					onChange={(e) => setNewDateDebut(e.target.value)}
 				/>
 
-			<label htmlFor="DateFin">Employé</label>
+			<label htmlFor="DateFin">Date de fin</label>
 			<input type="date"
 					id="DateFin"
 					name="DateFin"

@@ -12,21 +12,20 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, setEditAbse
 
 	// States for the values of the inputs to the edit absence modale
 	const [newEmployee, setNewEmployee] = useState(employee);
-	const [newDateDebut, setNewDateDebut] = useState(dateDebut);
-	const [newDateFin, setNewDateFin] = useState(dateFin);
+	const [newDateDebut, setNewDateDebut] = useState(dateDebut.substring(0, 10));
+	const [newDateFin, setNewDateFin] = useState(dateFin.substring(0, 10));
 	const [newType, setNewType] = useState(type);
 
 	// State to show or no an error if the absence type input value is wrong
 	const [showError, setShowError] = useState(false);
-	// Convert the new dates to iso String format to store on the api
-	const convertedNewDateDebut = new Date(newDateDebut).toISOString();
-	const convertedNewDateFin = new Date(newDateFin).toISOString();
-
+	// State to show or no an the absences types
+	const [showAbsencesTypes, setShowAbsencesTypes] = useState(false);
+	
 	useEffect(() => {
 
 		function closeEditModale(e) {
 			// Close the edit modale when click outside of it
-			if (e.target.parentElement.className !== "absence__update modale" && e.target.className !== "absence__update modale" && e.target.id !== "editImg" && e.target.id !== "interrogation") {
+			if (e.target.parentElement.className !== "absence__update modale" && e.target.parentElement.className !== "absencesTypes showAbsences" && e.target.parentElement.className !== "absencesTypes hideAbsences" && e.target.className !== "absence__update modale" && e.target.id !== "editImg" && e.target.id !== "interrogation") {
 				setEditAbsenceModale(false);
 			}
 		}
@@ -34,9 +33,12 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, setEditAbse
 		window.addEventListener("click", closeEditModale)
 		return () => window.removeEventListener("click", closeEditModale)
 	})
-
+	
 	// Function to update the absence on the database
 	const handleModifyAbsence = (e) => {
+		// Convert the new dates to iso String format to store on the api
+		const convertedNewDateDebut = new Date(newDateDebut).toISOString();
+		const convertedNewDateFin = new Date(newDateFin).toISOString();
 
 		e.preventDefault();
 
@@ -63,6 +65,7 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, setEditAbse
 	}
 
 	return (
+
 		<form className={`absence__update modale`}
 			id="absenceUpdate"
 			data-testid="updateModale"
@@ -78,9 +81,12 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, setEditAbse
 				value={newEmployee}
 			/>
 
-			<label htmlFor="type">Type de congé
-				<AbsencesTypes/>
+			<label htmlFor="type"
+					id="absencesTypeLabel"
+					onClick={() => setShowAbsencesTypes(!showAbsencesTypes)}>
+					Type de congé ?
 			</label>
+			<AbsencesTypes className={showAbsencesTypes ? "showAbsences" : "hideAbsences"} />
 			<input type="text"
 				id="type"
 				name="type"
@@ -139,4 +145,4 @@ EditAbsenceModale.propTypes = {
 	setEditAbsenceModale: PropTypes.func.isRequired
 }
 
-export default EditAbsenceModale
+export default EditAbsenceModale;

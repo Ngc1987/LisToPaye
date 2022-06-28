@@ -1,17 +1,20 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
-import Absence from "./Absence";
-import { createAbsence, getAbsences, resetAbsences } from '../redux/absences.actions';
-import NewAbsenceModale from './NewAbsenceModale';
-import { useAppDispatch, useAppSelector } from "../redux/redux-hooks";
-import { HiArrowSmDown } from 'react-icons/hi';
-import Loader from "./Loader";
-const AbsencesList = () => {
+import React, { useState } from 'react';
 
-	const [sortAbsences, setSortAbsences] = useState("name");
+import Absence from "./Absence";
+import NewAbsenceModale from './NewAbsenceModale';
+import Loader from "./Loader";
+import { HiArrowSmDown } from 'react-icons/hi';
+
+import { createAbsence, getAbsences } from '../redux/absences.actions';
+import { useAppDispatch, useAppSelector } from "../redux/redux-hooks";
+
+const AbsencesList = () => {
 
 	const dispatch = useAppDispatch();
 	const absences = useAppSelector(state => state.absences);
+
+	// State to set by what type the absences are filtered
+	const [sortAbsences, setSortAbsences] = useState("name");
 
 	// State to show or no the new absence modale
 	const [showNewAbsence, setShowNewAbsence] = useState(false);
@@ -25,12 +28,12 @@ const AbsencesList = () => {
 	const [newDateFin, setNewDateFin] = useState(null);
 	const [newType, setNewType] = useState(null);
 
-	// Convert the new dates to iso String format to store on the api
-	const convertedNewDateDebut = new Date(newDateDebut).toISOString();
-	const convertedNewDateFin = new Date(newDateFin).toISOString();
-
+	
 	// Function to create a new absence on the database
 	const handleRegisterAbsence = (e) => {
+		// Convert the new dates to iso String format to store on the api
+		const convertedNewDateDebut = new Date(newDateDebut).toISOString();
+		const convertedNewDateFin = new Date(newDateFin).toISOString();
 
 		e.preventDefault();
 
@@ -59,26 +62,39 @@ const AbsencesList = () => {
 	return (
 		<>
 			<h1>Liste des absences</h1>
+
 			<section className="absences">
+
 				<div className="absences-container">
+
 					<div className="absences__title">
-						<p><span onClick={() => setSortAbsences("name")} >Employé
-							<HiArrowSmDown className="arrow" />
-						</span></p>
-						<p><span onClick={() => setSortAbsences("type")} >Type
-							<HiArrowSmDown className="arrow" />
-						</span></p>
-						<p><span onClick={() => setSortAbsences("startDate")} >Date début
-							<HiArrowSmDown className="arrow" />
-						</span></p>
-						<p><span onClick={() => setSortAbsences("endDate")} >Date fin
-							<HiArrowSmDown className="arrow" />
-						</span></p>
+
+						<p>
+							<span onClick={() => setSortAbsences("name")} >Employé
+								<HiArrowSmDown className="arrow" />
+							</span>
+						</p>
+						<p>
+							<span onClick={() => setSortAbsences("type")} >Type
+								<HiArrowSmDown className="arrow" />
+							</span>
+						</p>
+						<p>
+							<span onClick={() => setSortAbsences("startDate")} >Date début
+								<HiArrowSmDown className="arrow" />
+							</span>
+						</p>
+						<p>
+							<span onClick={() => setSortAbsences("endDate")} >Date fin
+								<HiArrowSmDown className="arrow" />
+							</span>
+						</p>
 						<p id="addAbsence"
 							onClick={() => setShowNewAbsence(true)}
 						>
 							<em id="addAbsenceButton">+</em>
 						</p>
+
 					</div>
 
 					{
@@ -94,7 +110,7 @@ const AbsencesList = () => {
 							}
 							return null
 						}).map((absence) => {
-							return <Absence key={absence.id + 10}
+							return <Absence key={absence.id + 100}
 								employee={absence.employeeName}
 								dateDebut={absence.dateDebut}
 								dateFin={absence.dateFin}
@@ -106,6 +122,7 @@ const AbsencesList = () => {
 							<Loader />
 					}
 				</div>
+
 				{showNewAbsence &&
 					<NewAbsenceModale handleRegisterAbsence={handleRegisterAbsence}
 						setNewEmployee={setNewEmployee}
@@ -116,6 +133,7 @@ const AbsencesList = () => {
 						showError={showError}
 					/>
 				}
+
 			</section>
 		</>
 	)

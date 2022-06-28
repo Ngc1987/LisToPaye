@@ -1,6 +1,5 @@
 import NewAbsenceModale from "../components/NewAbsenceModale";
 import { render, screen } from '../setupTests';
-
 import { Provider } from "react-redux";
 import { store } from './../redux/store';
 import { checkProps } from "../testsUtils";

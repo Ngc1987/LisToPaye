@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 
-import PropTypes from 'prop-types';
-
 import { getAbsences, deleteAbsence } from "../redux/absences.actions";
+
+import PropTypes from 'prop-types';
 
 const DeleteAbsenceModale = ({ setDeleteAbsenceModale, id }) => {
 

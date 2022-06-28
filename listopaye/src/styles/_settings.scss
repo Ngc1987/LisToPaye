@@ -14,26 +14,28 @@ $color-font: #2F3D4E;
 :root {
 	font-size: 10px;
 }
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style-type: none;
-  outline: none;
-  border: none;
-  text-decoration: none;
-  font-family: $font-1;
-  color: $color-font;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style-type: none;
+	outline: none;
+	border: none;
+	text-decoration: none;
+	font-family: $font-1;
+	color: $color-font;
 
-  &::selection {
-    background:rgba(252, 164, 142, 0.966);
-	color: #fff;
-  }
+	&::selection {
+		background:rgba(252, 164, 142, 0.966);
+		color: #fff;
+	}
 
-  &::selection img{
-	background:rgba(255, 255, 255, 0.966);
-  }
+	&::selection img{
+		background:rgba(255, 255, 255, 0.966);
+	}
 }
+
 .App {
 	display: flex;
 	flex-direction: column;
@@ -46,9 +48,9 @@ body {
 	width: 100%;
 	height: 100vh;
 }
-a,
-a:visited {
-  color: $color-3;
+
+a, a:visited {
+  	color: $color-3;
 }
 
 #smallScreenMsg {
@@ -58,7 +60,6 @@ a:visited {
 	font-family: $font-2;
 	width: 80%;
 	text-align: center;
-	// filter: drop-shadow(2px 2px 15px $color-2);
 }
 
 .error {
@@ -69,18 +70,18 @@ a:visited {
 }
 
 .modale {
-		animation: modale 0.4s ease forwards;
-		background: linear-gradient(225deg, rgba(252, 164, 142, 0.966), rgb(250, 227, 177) 60%);
-		color: $color-font;
-	}
+	animation: modale 0.4s ease forwards;
+	background: linear-gradient(225deg, rgba(252, 164, 142, 0.966), rgb(250, 227, 177) 60%);
+	color: $color-font;
+}
 	
-	@keyframes modale {
-		0% {
-			z-index: -1;
-			opacity: 0;
-		}
-		100% {
-			z-index: 100;
-			opacity: 1;
-		}
+@keyframes modale {
+	0% {
+		z-index: -1;
+		opacity: 0;
 	}
+	100% {
+		z-index: 100;
+		opacity: 1;
+	}
+}

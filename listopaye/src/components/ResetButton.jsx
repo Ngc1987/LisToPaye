@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
+
 import { resetAbsences } from "../redux/absences.actions";
 import { useAppDispatch } from './../redux/redux-hooks';
-import { getAbsencesTypes } from './../redux/absences.actions';
 
 const ResetButton = () => {
 
+	// States to show on the modale the other infos when the user confirm to reset the datas
 	const [showConfirmModale, setShowConfirmModale] = useState(false);
 	const [showConfirmText, setShowConfirmText] = useState(false);
 
 	const dispatch = useAppDispatch()
 
+	// Function to reset the absences datas
 	const resetDatas = () => {
+
 		dispatch(resetAbsences())
 		setShowConfirmText(true)
 		setTimeout(() => {
@@ -19,7 +22,6 @@ const ResetButton = () => {
 		}, 4000);
 	}
 
-	dispatch(getAbsencesTypes())
 
 	return (
 		<>
@@ -48,12 +50,19 @@ const ResetButton = () => {
 							</div>
 						</>
 						:
-						<p>Les données ont bien <br /> été réinitialisées</p>
+						<>
+							<p>Les données ont bien <br /> été réinitialisées</p>
+							<div className="load"></div>
+						</>
 					}
 				</div>
 			}
 		</>
 	)
+}
+
+ResetButton.propTypes = {
+
 }
 
 export default ResetButton;

@@ -6,7 +6,9 @@ import absencesReducer from "./absences.reducer.js";
 // Dev tools
 import { composeWithDevTools } from "redux-devtools-extension";
 
-export const store = createStore(
-	absencesReducer, composeWithDevTools(applyMiddleware(thunk))
-);
+export const middlewares = [thunk];
+
+export const createStoreWithMiddleware = composeWithDevTools(applyMiddleware(...middlewares))(createStore);
+
+export const store = createStoreWithMiddleware(absencesReducer)
 

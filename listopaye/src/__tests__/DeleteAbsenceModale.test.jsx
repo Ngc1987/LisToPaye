@@ -1,6 +1,5 @@
 import DeleteAbsenceModale from "../components/DeleteAbsenceModale";
 import { render,screen } from '../setupTests';
-
 import { Provider } from "react-redux";
 import { store } from './../redux/store';
 import { checkProps } from "../testsUtils";
@@ -11,7 +10,6 @@ describe("DeleteAbsenceModale component", () => {
 
 	const container = document.createElement('div');
 	const setDeleteAbsenceModale = jest.fn()
-	// const handleDeleteAbsence = jest.fn()
 	const id = 20;
 
 	test("should render without crash", () => {
@@ -33,10 +31,6 @@ describe("DeleteAbsenceModale component", () => {
 		const deleteModale = screen.getByTestId("deleteModale");
 		expect(deleteModale).toBeInTheDocument();
 
-		// const deleteModaleButton = screen.getByTestId("deleteModaleButton");
-		// fireEvent.click(deleteModaleButton);
-		// expect(handleDeleteAbsence).toHaveBeenCalled();
-
 	})
 
 	test("with good PropTypes should not show a warning", () => {
@@ -53,7 +47,6 @@ describe("DeleteAbsenceModale component", () => {
 			id: "Test wrong value"
 		}
 		const propsError = checkProps(DeleteAbsenceModale, expectedProps);
-		// console.log(propsError)
 		expect(propsError).toBeDefined()
 	})
 })

@@ -1,15 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react';
 
-const AbsencesTypes = () => {
+import { useAppSelector } from './../redux/redux-hooks';
+
+import PropTypes from 'prop-types';
+
+const AbsencesTypes = ({className}) => {
+
+	const absencesTypes = useAppSelector(state => state.absencesTypes);
 
 	return (
-		<>
-			<span id="interrogation"
-				title="CONGE_MATERNITE  CONGE_PATERNITE  CONGE_PAYE  CONGE_SANS_SOLDE  REDUCTION_DU_TEMPS_DE_TRAVAIL">
-				?
-			</span>
-		</>
+		<div className={`absencesTypes ${className}`}
+			data-testid="absencesTypes" >
+			{absencesTypes && absencesTypes.map((absenceType, i) => {
+				return (
+					<p key={i} >{absenceType.code}</p>
+				)
+			})}
+		</div>
 	)
 }
 
-export default AbsencesTypes
+AbsencesTypes.propTypes = {
+	/**
+	 * The second className of the component to be applied (showAbsences or hideAbsences)
+	 */
+	className: PropTypes.string.isRequired
+}
+
+export default AbsencesTypes;
