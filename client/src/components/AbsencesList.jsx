@@ -7,11 +7,17 @@ import { HiArrowSmDown } from 'react-icons/hi';
 
 import { createAbsence, getAbsences } from '../redux/absences.actions';
 import { useAppDispatch, useAppSelector } from "../redux/redux-hooks";
+import { selectAllAbsences } from "../features/absenceSlice";
 
 const AbsencesList = () => {
 
 	const dispatch = useAppDispatch();
-	const absences = useAppSelector(state => state.absences);
+
+	const absencess = useAppSelector(selectAllAbsences);
+	// const absences = absencess[0]
+	const absences = [...absencess]
+
+	console.log(absences)
 
 	// State to set by what type the absences are filtered
 	const [sortAbsences, setSortAbsences] = useState("name");

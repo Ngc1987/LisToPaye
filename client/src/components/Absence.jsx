@@ -11,12 +11,11 @@ import PropTypes from 'prop-types';
 
 const Absence = ({ employee, dateDebut, dateFin, type, id }) => {
 
-	const tt = "tt"
-	
 	// States to show or no the edit and delete absence modales
 	const [editAbsenceModale, setEditAbsenceModale] = useState(false);
 	const [deleteAbsenceModale, setDeleteAbsenceModale] = useState(false);
 
+	console.log(employee)
 	return (
 		<article className="absence" data-testid="absence" >
 

@@ -2,15 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import "./styles/index.scss";
-// import reportWebVitals from './reportWebVitals.js';
-
 import { Provider } from "react-redux";
-import { getAbsences, getAbsencesTypes } from "./redux/absences.actions.js";
 
-import { store } from './redux/store.js';
+import { store } from "./app/store.js";
+// import { store } from './redux/store.js';
 
-store.dispatch(getAbsences());
-store.dispatch(getAbsencesTypes());
+// store.dispatch(getAbsences());
+// store.dispatch(getAbsencesTypes());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

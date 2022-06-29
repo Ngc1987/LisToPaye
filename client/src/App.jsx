@@ -2,10 +2,20 @@ import Header from "./components/Header";
 import AbsencesList from "./components/AbsencesList";
 import ResetButton from "./components/ResetButton";
 import useWindowSize from './hooks/useWindowSize';
+import { useEffect } from 'react';
+import { useAppDispatch } from "./redux/redux-hooks";
+import { getAbsences, getAbsence } from "./features/absenceSlice";
 
 function App() {
 
 	const dimensions = useWindowSize();
+
+	const dispatch = useAppDispatch()
+
+	useEffect(() => {
+		dispatch(getAbsences())
+		// dispatch(getAbsence(125))
+	}, [dispatch])
 
 	return (
 		<div className="App" data-testid="app">

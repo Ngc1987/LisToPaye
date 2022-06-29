@@ -13,6 +13,31 @@ export default function absencesReducer(state = initialState, action) {
 				...state,
 				absences: action.payload
 			}
+		case GET_ABSENCES:
+			return {
+				...state,
+				absences: action.payload
+			}
+		case GET_ABSENCES:
+			return {
+				...state,
+				absences: action.payload
+			}
+		case GET_ABSENCES:
+			return {
+				...state,
+				absences: action.payload
+			}
+		case GET_ABSENCES:
+			return {
+				...state,
+				absences: action.payload
+			}
+		case GET_ABSENCES:
+			return {
+				...state,
+				absences: action.payload
+			}
 
 		case CREATE_ABSENCE:
 			return {

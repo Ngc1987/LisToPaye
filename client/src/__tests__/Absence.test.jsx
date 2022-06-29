@@ -2,7 +2,7 @@ import Absence from "../components/Absence";
 import { unmountComponentAtNode } from "react-dom";
 import { render, screen } from '../setupTests';
 import { Provider } from "react-redux";
-import { store } from './../redux/store';
+import { store } from '../features/absenceSlice';
 import { checkProps } from "../testsUtils";
 
 jest.mock("../redux/redux-hooks");

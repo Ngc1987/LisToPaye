@@ -11,7 +11,7 @@ import { render } from '@testing-library/react';
 import { act } from "react-dom/test-utils";
 
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { store } from "./features/absenceSlice";
 
 Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: true });
 

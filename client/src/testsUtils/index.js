@@ -2,7 +2,7 @@ import checkPropTypes from "check-prop-types";
 
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import absencesReducer from "../redux/absences.reducer";
-import { middlewares } from "../redux/store";
+import { middlewares } from "../features/absenceSlice";
 
 
 export const findByTestAttr = (component, attr) => {
