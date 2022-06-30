@@ -3,17 +3,18 @@ class AbsencesService {
 	getAbsences() {
 		return http.get("/absences");
 	}
-	createAbsence() {
-		return http.post(`/absences`);
-	}
 	getAbsence(id) {
 		return http.get(`/absences/${id}`);
+	}
+	createAbsence(data) {
+		return http.post(`/absences`, data);
 	}
 	deleteAbsence(id) {
 		return http.delete(`/absences/${id}`);
 	}
-	modifyAbsence(id, data) {
-		return http.put(`/absences/${id}`, data);
+	modifyAbsence(data) {
+		console.log(data)
+		return http.put(`/absences/${data.id}`, data);
 	}
 	getAbsencesTypes() {
 		return http.get(`/type-absences`);

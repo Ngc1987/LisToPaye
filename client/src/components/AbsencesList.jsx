@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Absence from "./Absence";
 import NewAbsenceModale from './NewAbsenceModale';
 import Loader from "./Loader";
 import { HiArrowSmDown } from 'react-icons/hi';
 
-import { createAbsence, getAbsences } from '../redux/absences.actions';
+import { createAbsence, getAbsences } from '../features/absenceSlice';
 import { useAppDispatch, useAppSelector } from "../redux/redux-hooks";
 import { selectAllAbsences } from "../features/absenceSlice";
+import { useMemo } from "react";
 
 const AbsencesList = () => {
 
 	const dispatch = useAppDispatch();
 
-	const absencess = useAppSelector(selectAllAbsences);
-	// const absences = absencess[0]
-	const absences = [...absencess]
-
-	console.log(absences)
+	const absencesArray = useAppSelector(selectAllAbsences);
+	// const absences = absencesArray[0]
+	
+	// console.log(absences)
 
 	// State to set by what type the absences are filtered
 	const [sortAbsences, setSortAbsences] = useState("name");
-
+	
 	// State to show or no the new absence modale
 	const [showNewAbsence, setShowNewAbsence] = useState(false);
 
@@ -33,6 +33,16 @@ const AbsencesList = () => {
 	const [newDateDebut, setNewDateDebut] = useState(null);
 	const [newDateFin, setNewDateFin] = useState(null);
 	const [newType, setNewType] = useState(null);
+
+	// const dispatch = useAppDispatch()
+
+	const absences = useMemo(() => {
+		return [...absencesArray]
+	}, [absencesArray])
+
+	useEffect(() => {
+		dispatch(getAbsences())
+	}, [dispatch])
 
 	
 	// Function to create a new absence on the database
@@ -49,6 +59,7 @@ const AbsencesList = () => {
 			absenceCode: newType,
 			employeeName: newEmployee
 		}
+		console.log(data)
 
 		
 		if (newType !== "CONGE_MATERNITE" &&

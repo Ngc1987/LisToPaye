@@ -4,11 +4,12 @@ import App from './App.jsx';
 import "./styles/index.scss";
 import { Provider } from "react-redux";
 
-import { store } from "./app/store.js";
+import  store from "./app/store.js";
 // import { store } from './redux/store.js';
+import { getAbsencesTypes } from './features/absencesTypesSlice';
 
 // store.dispatch(getAbsences());
-// store.dispatch(getAbsencesTypes());
+store.dispatch(getAbsencesTypes());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

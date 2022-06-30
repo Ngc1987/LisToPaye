@@ -1,8 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import  absenceReducer from "../features/absenceSlice";
+import  absenceReducer from "../features/absenceSlice.js";
+import  absenceTypesReducer from "../features/absencesTypesSlice.js";
 
-export const store = configureStore({
-	reducer: {
-		absences: absenceReducer
-	}
+const reducer = {
+	absences: absenceReducer,
+	absenceTypes: absenceTypesReducer
+}
+
+const store = configureStore({
+	reducer: reducer,
+	devTools: true
 })
+
+export default store;

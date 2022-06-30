@@ -10,12 +10,7 @@ function App() {
 
 	const dimensions = useWindowSize();
 
-	const dispatch = useAppDispatch()
-
-	useEffect(() => {
-		dispatch(getAbsences())
-		// dispatch(getAbsence(125))
-	}, [dispatch])
+	
 
 	return (
 		<div className="App" data-testid="app">

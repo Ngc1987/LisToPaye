@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 
-import { getAbsences, modifyAbsence } from "../redux/absences.actions";
+import { getAbsences, modifyAbsence } from "../features/absenceSlice";
 
 import PropTypes from 'prop-types';
 import AbsencesTypes from "./AbsencesTypes";
@@ -43,6 +43,7 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, setEditAbse
 		e.preventDefault();
 
 		const data = {
+			id: id,
 			dateDebut: convertedNewDateDebut,
 			dateFin: convertedNewDateFin,
 			absenceCode: newType,
@@ -57,8 +58,9 @@ const EditAbsenceModale = ({ employee, dateDebut, dateFin, type, id, setEditAbse
 			newType !== "REDUCTION_DU_TEMPS_DE_TRAVAIL") {
 				setShowError(true);
 		} else {
+			console.log(data)
+			dispatch(modifyAbsence(data))
 			setShowError(false);
-			dispatch(modifyAbsence(id, data))
 			setEditAbsenceModale(false);
 			dispatch(getAbsences());
 		}

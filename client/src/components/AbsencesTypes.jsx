@@ -3,10 +3,15 @@ import React from 'react';
 import { useAppSelector } from './../redux/redux-hooks';
 
 import PropTypes from 'prop-types';
+import { selectAllAbsencesTypes } from './../features/absencesTypesSlice';
 
 const AbsencesTypes = ({className}) => {
 
-	const absencesTypes = useAppSelector(state => state.absencesTypes);
+	// const absencesTypes = useAppSelector(state => state.absencesTypes);
+
+	const absencesTypesArray = useAppSelector(selectAllAbsencesTypes);
+	const absencesTypes = [...absencesTypesArray]
+	console.log(absencesTypes)
 
 	return (
 		<div className={`absencesTypes ${className}`}

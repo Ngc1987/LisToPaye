@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 
-import { getAbsences, deleteAbsence } from "../redux/absences.actions";
+import { getAbsences, deleteAbsence } from "../features/absenceSlice";
 
 import PropTypes from 'prop-types';
 
